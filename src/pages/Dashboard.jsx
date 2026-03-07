@@ -1,4 +1,5 @@
 import { portfolio } from "../data/mockPortfolio"
+import HoldingsTable from "../components/portfolio/HoldingsTable"
 
 export default function Dashboard() {
 
@@ -8,11 +9,8 @@ export default function Dashboard() {
     <div>
       <h2>Portfolio Overview</h2>
 
-      {holdings.map((stock) => (
-        <div key={stock.symbol}>
-          {stock.symbol} - {stock.quantity} 
-        </div>
-      ))}
+      <HoldingsTable holdings={holdings} />
+      
     </div>
   )
 }
