@@ -1,7 +1,7 @@
 import { portfolio } from "../data/mockPortfolio"
 import HoldingsTable from "../components/portfolio/HoldingsTable"
 import PortfolioSummary from "../components/portfolio/PortfolioSummary"
-
+import PortfolioPieChart from "../components/charts/PortfolioPieChart"
 
 export default function Dashboard() {
   const holdings = portfolio.holdings
@@ -20,12 +20,13 @@ export default function Dashboard() {
 
 
   return (
-    <div> 
+    <div style={{ padding: "20px", marginBottom: "30px" }}>
       <PortfolioSummary
         totVal={totVal}
         totPnL={totPnL}
       />
       <HoldingsTable holdings={holdings} />
+      <PortfolioPieChart holdings={holdings} />
 
     </div>
   )
