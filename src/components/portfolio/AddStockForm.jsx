@@ -11,6 +11,7 @@ export default function AddStockForm({ onAddStock }) {
     e.preventDefault();
 
     const newStock = {
+      id: Date.now(),
       symbol,
       quantity: Number(quantity),
       avgPrice: Number(avgPrice),
