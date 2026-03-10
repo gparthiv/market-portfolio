@@ -22,6 +22,23 @@ export default function Dashboard() {
     setHoldings([...holdings, newStock])
   }
 
+  function handleSellStock(id, quantitytoSell) {
+    setHoldings(holdings.map(stock => {
+      if (stock.id === id) {
+        const newQuantity = stock.quantity - quantitytoSell
+        if (newQuantity <= 0)
+          return null
+        return {
+          ...stock,
+          quantity: newQuantity
+        }
+      }
+      return stock
+    })
+      .filter(Boolean)
+    )
+  }
+
 
   return (
     <div style={{ padding: "20px", marginBottom: "30px" }}>
@@ -30,7 +47,8 @@ export default function Dashboard() {
         totVal={totVal}
         totPnL={totPnL}
       />
-      <HoldingsTable holdings={holdings} />
+      <HoldingsTable holdings={holdings}
+        onSellStock={handleSellStock} />
       <PortfolioPieChart holdings={holdings} />
 
     </div>

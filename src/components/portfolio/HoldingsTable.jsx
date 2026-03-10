@@ -1,4 +1,6 @@
-export default function HoldingsTable({ holdings }) {
+import HoldingRow from "./HoldingRow";
+
+export default function HoldingsTable({ holdings, onSellStock }) {
   return (
     <table>
       <thead>
@@ -8,25 +10,20 @@ export default function HoldingsTable({ holdings }) {
           <th>Avg Price</th>
           <th>Current Price</th>
           <th>PnL</th>
+          <th>Sell Quantity</th>
         </tr>
       </thead>
 
       <tbody>
-        
-        {holdings.map((stock) => {
-          const pnl = (stock.currentPrice - stock.avgPrice) * stock.quantity;
 
-          return (
-            <tr key={stock.symbol}>
-              <td>{stock.symbol}</td>
-              <td>{stock.quantity}</td>
-              <td>{stock.avgPrice}</td>
-              <td>{stock.currentPrice}</td>
-              <td style={{ color: pnl > 0 ? "green" : "red" }}>{pnl}</td>
+        {holdings.map((stock) => (
+          <HoldingRow
+            key={stock.id}
+            stock={stock}
+            onSellStock={onSellStock}
+          />
+        ))}
 
-            </tr>
-          )
-        })}
       </tbody>
     </table>
   )
