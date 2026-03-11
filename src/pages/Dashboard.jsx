@@ -19,7 +19,27 @@ export default function Dashboard() {
   const totPnL = totVal - totalInvested
 
   function handleAddStock(newStock) {
-    setHoldings([...holdings, newStock])
+    const existingStock = holdings.find(
+      stock => stock.symbol === newStock.symbol
+    )
+    if (existingStock) {
+      const updatedHoldings = holdings.map(stock => {
+        if (stock.symbol === newStock.symbol) {
+          const totalQty = stock.quantity + newStock.quantity
+          const newAvgPrice =
+            ((stock.quantity * stock.avgPrice) + (newStock.quantity * newStock.avgPrice)) / totalQty
+          return {
+            ...stock,
+            quantity: totalQty,
+            avgPrice: newAvgPrice
+          }
+        }
+        return stock
+      })
+      setHoldings(updatedHoldings)
+    } else {
+      setHoldings([...holdings, newStock])
+    }
   }
 
   function handleSellStock(id, quantitytoSell) {
