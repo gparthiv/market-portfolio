@@ -6,9 +6,20 @@ export default function AddStockForm({ onAddStock }) {
   const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState("");
   const [avgPrice, setAvgPrice] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!symbol.trim() || !quantity || !avgPrice) {
+      setErrorMessage("Please fill all fields");
+      return;
+    }
+
+    if (quantity <= 0 || avgPrice <= 0) {
+      setErrorMessage("Quantity and Price must be greater than 0");
+      return;
+    }
 
     const newStock = {
       id: Date.now(),
@@ -18,6 +29,7 @@ export default function AddStockForm({ onAddStock }) {
       currentPrice: Number(avgPrice)
     };
 
+    setErrorMessage("");
     onAddStock(newStock);
 
     setSymbol("");
@@ -27,7 +39,7 @@ export default function AddStockForm({ onAddStock }) {
 
   return (
     <form onSubmit={handleSubmit}>
-
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       <h3>Add Stock</h3>
 
       <input
@@ -41,6 +53,7 @@ export default function AddStockForm({ onAddStock }) {
       <input
         type="number"
         placeholder="Quantity"
+        min="1"
         value={quantity}
         onChange={(e) => setQuantity(e.target.value)}
       />
@@ -48,8 +61,9 @@ export default function AddStockForm({ onAddStock }) {
       <input
         type="number"
         placeholder="Average Price"
+        min="1"
         value={avgPrice}
-        onChange={(e) => setAvgPrice(e.target.value)}
+        onChange={(e) => setAvgPrice(e.target.value.toUpperCase())}
       />
 
       <button type="submit">

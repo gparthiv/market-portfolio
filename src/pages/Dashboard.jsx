@@ -45,6 +45,8 @@ export default function Dashboard() {
   function handleSellStock(id, quantitytoSell) {
     setHoldings(holdings.map(stock => {
       if (stock.id === id) {
+        if(quantitytoSell>stock.quantity)
+            return stock
         const newQuantity = stock.quantity - quantitytoSell
         if (newQuantity <= 0)
           return null

@@ -1,7 +1,23 @@
 import { useState } from "react"
+
 export default function HoldingRow({ stock, onSellStock }) {
+
   const [sellQty, setSellQty] = useState("")
+  const [errorMessage, setErrorMessage] = useState("")
+
   const pnl = (stock.currentPrice - stock.avgPrice) * stock.quantity
+
+  function handleSell() {
+    const qty = Number(sellQty)
+    if (!sellQty || qty <= 0) {
+      setErrorMessage("Enter valid quantity")
+      return
+    }
+    setErrorMessage("")
+    onSellStock(stock.id, qty)
+    setSellQty("")
+  }
+
   return (
     <tr>
       <td>{stock.symbol}</td>
@@ -17,18 +33,20 @@ export default function HoldingRow({ stock, onSellStock }) {
         <input
           type="number"
           placeholder="Qty"
+          min="1"
           value={sellQty}
           onChange={(e) => setSellQty(e.target.value)}
         />
 
-        <button
-          onClick={() => {
-            onSellStock(stock.id, Number(sellQty))
-            setSellQty("")
-          }}
-        >
+        <button onClick={handleSell}>
           Sell
         </button>
+
+        {errorMessage && (
+          <div style={{ color: "red", fontSize: "12px" }}>
+            {errorMessage}
+          </div>
+        )}
       </td>
     </tr>
   )
