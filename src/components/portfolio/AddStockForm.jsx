@@ -47,7 +47,7 @@ export default function AddStockForm({ onAddStock }) {
         placeholder="Symbol"
         //value= the value ie "" now then onChange ie whenever text changes in textbox it gets renders in ui
         value={symbol}
-        onChange={(e) => setSymbol(e.target.value)}
+        onChange={(e) => setSymbol(e.target.value.toUpperCase())}
       />
 
       <input
@@ -63,7 +63,7 @@ export default function AddStockForm({ onAddStock }) {
         placeholder="Average Price"
         min="1"
         value={avgPrice}
-        onChange={(e) => setAvgPrice(e.target.value.toUpperCase())}
+        onChange={(e) => setAvgPrice(e.target.value)}
       />
 
       <button type="submit">

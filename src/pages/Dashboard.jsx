@@ -38,26 +38,27 @@ export default function Dashboard() {
       })
       setHoldings(updatedHoldings)
     } else {
-      setHoldings([...holdings, newStock])
+      setHoldings(prev => [...prev, newStock])
     }
   }
 
   function handleSellStock(id, quantitytoSell) {
-    setHoldings(holdings.map(stock => {
-      if (stock.id === id) {
-        if(quantitytoSell>stock.quantity)
+    setHoldings(prev =>
+      prev.map(stock => {
+        if (stock.id === id) {
+          if (quantitytoSell > stock.quantity)
             return stock
-        const newQuantity = stock.quantity - quantitytoSell
-        if (newQuantity <= 0)
-          return null
-        return {
-          ...stock,
-          quantity: newQuantity
+          const newQuantity = stock.quantity - quantitytoSell
+          if (newQuantity <= 0)
+            return null
+          return {
+            ...stock,
+            quantity: newQuantity
+          }
         }
-      }
-      return stock
-    })
-      .filter(Boolean)
+        return stock
+      })
+        .filter(Boolean)
     )
   }
 
