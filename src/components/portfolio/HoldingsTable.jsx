@@ -1,6 +1,8 @@
 import HoldingRow from "./HoldingRow";
+import { usePortfolio } from "../../context/usePortfolio"
 
-export default function HoldingsTable({ holdings, onSellStock }) {
+export default function HoldingsTable() {
+  const { holdings } = usePortfolio()
   return (
     <table>
       <thead>
@@ -20,7 +22,6 @@ export default function HoldingsTable({ holdings, onSellStock }) {
           <HoldingRow
             key={stock.id}
             stock={stock}
-            onSellStock={onSellStock}
           />
         ))}
 

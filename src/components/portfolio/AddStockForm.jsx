@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { usePortfolio } from "../../context/usePortfolio"
 
-export default function AddStockForm({ onAddStock }) {
-
+export default function AddStockForm() {
+  const { handleAddStock } = usePortfolio()
   //symbol is the value and setSymbol is function to change the state of the value
   const [symbol, setSymbol] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -30,7 +31,7 @@ export default function AddStockForm({ onAddStock }) {
     };
 
     setErrorMessage("");
-    onAddStock(newStock);
+    handleAddStock(newStock);
 
     setSymbol("");
     setQuantity("");

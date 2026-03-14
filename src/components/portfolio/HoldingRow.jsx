@@ -1,7 +1,8 @@
 import { useState } from "react"
+import { usePortfolio } from "../../context/usePortfolio"
 
-export default function HoldingRow({ stock, onSellStock }) {
-
+export default function HoldingRow({ stock }) {
+const { handleSellStock } = usePortfolio()
   const [sellQty, setSellQty] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -14,7 +15,7 @@ export default function HoldingRow({ stock, onSellStock }) {
       return
     }
     setErrorMessage("")
-    onSellStock(stock.id, qty)
+    handleSellStock(stock.id, qty)
     setSellQty("")
   }
 

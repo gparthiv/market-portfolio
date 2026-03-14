@@ -1,4 +1,7 @@
-export default function PortfolioSummary({ totVal, totPnL }) {
+import { usePortfolio } from "../../context/usePortfolio"
+
+export default function PortfolioSummary() {
+  const { totVal, totPnL } = usePortfolio()
   return (
     <div>
       <h2>Portfolio Overview</h2>

@@ -1,7 +1,9 @@
 //get components from recharts
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts"
+import { usePortfolio } from "../../context/usePortfolio"
 //send your customized chart
-export default function PortfolioPieChart({ holdings }) {
+export default function PortfolioPieChart() {
+  const { holdings } = usePortfolio()
   const data = holdings.map(stock => ({
     name: stock.symbol,
     value: stock.quantity * stock.currentPrice
