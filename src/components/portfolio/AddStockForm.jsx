@@ -44,18 +44,18 @@ export default function AddStockForm({ onAddStock }) {
 
       <input
         type="text"
-        placeholder="Symbol"
-        //value= the value ie "" now then onChange ie whenever text changes in textbox it gets renders in ui
-        value={symbol}
-        onChange={(e) => setSymbol(e.target.value.toUpperCase())}
-      />
-
-      <input
-        type="text"
         maxLength={10}
         placeholder="Symbol"
         value={symbol}
         onChange={(e) => setSymbol(e.target.value.replace(/[^A-Z0-9]/gi, "").toUpperCase())}
+      />
+
+      <input
+        type="number"
+        placeholder="Quantity"
+        min="1"
+        value={quantity}
+        onChange={(e) => setQuantity(e.target.value)}
       />
 
       <input
