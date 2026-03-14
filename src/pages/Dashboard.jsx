@@ -4,19 +4,13 @@ import PortfolioSummary from "../components/portfolio/PortfolioSummary"
 import PortfolioPieChart from "../components/charts/PortfolioPieChart"
 import { useState } from "react"
 import AddStockForm from "../components/portfolio/AddStockForm"
+import { calculateTotalValue, calculateTotalPnL } from "../utils/portfolioCalculations"
 
 export default function Dashboard() {
   const [holdings, setHoldings] = useState(portfolio.holdings)
 
-  const totVal = holdings.reduce((tot, stock) => {
-    return tot + stock.quantity * stock.currentPrice
-  }, 0)
-
-  const totalInvested = holdings.reduce((tot, stock) => {
-    return tot + stock.quantity * stock.avgPrice
-  }, 0)
-
-  const totPnL = totVal - totalInvested
+  const totVal = calculateTotalValue(holdings)
+  const totPnL = calculateTotalPnL(holdings)
 
   function handleAddStock(newStock) {
     const existingStock = holdings.find(
