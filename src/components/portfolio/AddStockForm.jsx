@@ -51,19 +51,18 @@ export default function AddStockForm({ onAddStock }) {
       />
 
       <input
-        type="number"
-        placeholder="Quantity"
-        min="1"
-        value={quantity}
-        onChange={(e) => setQuantity(e.target.value)}
+        type="text"
+        maxLength={10}
+        placeholder="Symbol"
+        value={symbol}
+        onChange={(e) => setSymbol(e.target.value.replace(/[^A-Z0-9]/gi, "").toUpperCase())}
       />
 
       <input
-        type="number"
+        type="text"
         placeholder="Average Price"
-        min="1"
         value={avgPrice}
-        onChange={(e) => setAvgPrice(e.target.value)}
+        onChange={(e) => setAvgPrice(e.target.value.replace(/[^0-9.]/g, ""))}
       />
 
       <button type="submit">
