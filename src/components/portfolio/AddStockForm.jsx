@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react"
 import { usePortfolio } from "../../context/usePortfolio"
 
 export default function AddStockForm() {
@@ -8,6 +8,7 @@ export default function AddStockForm() {
   const [quantity, setQuantity] = useState("");
   const [avgPrice, setAvgPrice] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const symbolInputRef = useRef(null)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,6 +37,7 @@ export default function AddStockForm() {
     setSymbol("");
     setQuantity("");
     setAvgPrice("");
+    symbolInputRef.current.focus()
   }
 
   return (
@@ -45,6 +47,7 @@ export default function AddStockForm() {
 
       <input
         type="text"
+        ref={symbolInputRef}
         maxLength={10}
         placeholder="Symbol"
         value={symbol}

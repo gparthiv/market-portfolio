@@ -23,9 +23,9 @@ export function PortfolioProvider({ children }) {
 
           const totalQty = stock.quantity + newStock.quantity
 
-          const newAvgPrice =
-            ((stock.quantity * stock.avgPrice) +
-              (newStock.quantity * newStock.avgPrice)) / totalQty
+          const newAvgPrice = Number(
+            (((stock.quantity * stock.avgPrice) + (newStock.quantity * newStock.avgPrice)) / totalQty).toFixed(2)
+          )
 
           return {
             ...stock,

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { usePortfolio } from "../../context/usePortfolio"
 
 export default function HoldingRow({ stock }) {
-const { handleSellStock } = usePortfolio()
+  const { handleSellStock } = usePortfolio()
   const [sellQty, setSellQty] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -27,7 +27,7 @@ const { handleSellStock } = usePortfolio()
       <td>{stock.currentPrice}</td>
 
       <td style={{ color: pnl > 0 ? "green" : "red" }}>
-        {pnl}
+        {Number(pnl).toFixed(2)}
       </td>
 
       <td>
