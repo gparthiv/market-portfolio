@@ -4,19 +4,19 @@ import { usePortfolio } from "../../context/usePortfolio"
 export default function HoldingsTable() {
   const { holdings } = usePortfolio()
   return (
-    <table>
+    <table className="mx-auto w-full max-w-5xl text-sm divide-y divide-slate-100">
       <thead>
-        <tr>
-          <th>Symbol</th>
-          <th>Quantity</th>
-          <th>Avg Price</th>
-          <th>Current Price</th>
-          <th>PnL</th>
-          <th>Sell Quantity</th>
+        <tr className="text-left text-slate-500 font-medium border-b-2 border-slate-200">
+          <th className="th-base">Symbol</th>
+          <th className="th-base">Quantity</th>
+          <th className="th-base">Avg Price</th>
+          <th className="th-base">Current Price</th>
+          <th className="th-base">PnL</th>
+          <th className="th-base">Sell Quantity</th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody className="divide-y divide-slate-100">
 
         {holdings.map((stock) => (
           <HoldingRow

@@ -20,33 +20,51 @@ export default function HoldingRow({ stock }) {
   }
 
   return (
-    <tr>
-      <td>{stock.symbol}</td>
-      <td>{stock.quantity}</td>
-      <td>{stock.avgPrice}</td>
-      <td>{stock.currentPrice}</td>
+    <tr className="hover:bg-slate-50">
+      <td className="py-3 px-2 font-medium text-slate-800">
+        {stock.symbol}
+      </td>
 
-      <td style={{ color: pnl > 0 ? "green" : "red" }}>
+      <td className="py-3 px-2 text-slate-600">
+        {stock.quantity}
+      </td>
+
+      <td className="py-3 px-2 text-slate-600">
+        {stock.avgPrice}
+      </td>
+
+      <td className="py-3 px-2 text-slate-600">
+        {stock.currentPrice}
+      </td>
+
+      <td className={`py-3 px-2 font-medium ${pnl > 0 ? "text-green-600" : "text-red-500"}`}>
         {Number(pnl).toFixed(2)}
       </td>
 
-      <td>
-        <input
-          type="number"
-          placeholder="Qty"
-          min="1"
-          value={sellQty}
-          onChange={(e) => setSellQty(e.target.value)}
-        />
+      {/* SELL COLUMN */}
+      <td className="py-3 px-2">
+        <div className="flex gap-2 items-center">
+          <input
+            className="input-base"
+            type="number"
+            placeholder="Qty"
+            min="1"
+            value={sellQty}
+            onChange={(e) => setSellQty(e.target.value)}
+          />
 
-        <button onClick={handleSell}>
-          Sell
-        </button>
+          <button
+            onClick={handleSell}
+            className="border border-slate-300 px-3 py-1 rounded text-sm hover:bg-slate-100 transition-colors duration-150"
+          >
+            Sell
+          </button>
+        </div>
 
         {errorMessage && (
-          <div style={{ color: "red", fontSize: "12px" }}>
+          <p className="text-red-500 text-xs mt-1">
             {errorMessage}
-          </div>
+          </p>
         )}
       </td>
     </tr>

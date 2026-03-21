@@ -8,7 +8,7 @@ export default function SectorPieChart() {
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4">
 
       <h3>Sector Allocation</h3>
 

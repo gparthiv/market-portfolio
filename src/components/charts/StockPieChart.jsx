@@ -13,7 +13,7 @@ export default function PortfolioPieChart() {
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"]
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4">
       <h3>Stock Allocation</h3>
       <PieChart width={400} height={300}>
         <Pie
